@@ -22,9 +22,9 @@ while True:
             arquivo(resp)
             sleep(1.5)
         elif resp == 4:
-            Print('Saindo...')
+            Print('Saindo ...')
             sleep(1.5)
-            break;
+            break
             
         else:
             print("\033[31mOpção inválida\033[0m")
