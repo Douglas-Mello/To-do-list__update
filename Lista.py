@@ -16,16 +16,19 @@ while True:
         opc ('Remover tarefa', 3)
         opc ('Sair', 4)
         resp = int(input("Opção: "))
-        sleep(1)
+        
         if resp in range(1,4):
+            print()
             arquivo(resp)
-            sleep(2)
+            sleep(1.5)
         elif resp == 4:
             Print('Saindo...')
-            sleep(1.3)
+            sleep(1.5)
+            break;
+            
         else:
-            print("Opção inválida")
-            sleep(2)
+            print("\033[31mOpção inválida\033[0m")
+           
     except ValueError:
-        print('Digite apenas números inteiros e dentro das opções disponivéis')
+        print( "\033[31mDigite apenas números inteiros e dentro das opções disponivéis\033[0m")
         sleep(2)
