@@ -11,17 +11,19 @@ def opc(txt, c):
 Print("Selecione a opção desejada ")
 while True:
     try:
-        opc('Adicionar tarefa', 1)
-        opc('Listar tarefas', 2)
-        opc ('Remover tarefa', 3)
-        opc ('Sair', 4)
+        opc('Adicionar pessoa',1)
+        opc("Adicionar tarefa",2)
+        opc('Salvar tarefa', 3)
+        opc('Listar tarefas', 4)
+        opc ('Remover tarefa', 5)
+        opc ('Sair', 6)
         resp = int(input("Opção: "))
         
-        if resp in range(1,4):
+        if resp in range(1,6):
             print()
             arquivo(resp)
             sleep(1.5)
-        elif resp == 4:
+        elif resp == 6:
             Print('Saindo ...')
             sleep(1.5)
             break
