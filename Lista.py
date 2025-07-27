@@ -21,7 +21,7 @@ while True:
         
         if resp in range(1,6):
             print()
-            arquivo(resp)
+            lista(resp)
             sleep(1.5)
         elif resp == 6:
             Print('Saindo ...')
