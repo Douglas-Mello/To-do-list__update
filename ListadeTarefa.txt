@@ -1,2 +1,1 @@
-Nome Douglas Tarefa: 
- Comer
+Nome Douglas Tarefas: 4 --> ['comer', 'Beber', 'Dormir', 'Academia']
