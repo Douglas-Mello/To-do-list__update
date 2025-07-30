@@ -1,3 +1,1 @@
-Nome Douglas Tarefas: 2 --> ['Comer', 'Andar']
-Nome Douglas Tarefas: 1 --> ['Comer', 'Andar']
-Nome Marta Tarefas: 2 --> ['Teste']
+Nome Douglas Tarefas: 2 --> [['"\'oi\'"', ' " \'Comer\'"]', " 'andar'"], 'Codar']
