@@ -1,1 +1,3 @@
-Nome Douglas Tarefas: 4 --> ['comer', 'Beber', 'Dormir', 'Academia']
+Nome Douglas Tarefas: 2 --> ['Comer', 'Andar']
+Nome Douglas Tarefas: 1 --> ['Comer', 'Andar']
+Nome Marta Tarefas: 2 --> ['Teste']

@@ -33,11 +33,58 @@ def lista(opc):
                         linhas = file.readlines()
                     with open("ListadeTarefa.txt", "w") as file:
                         for linha in linhas:
-                            if f"Nome {adicionar} " in linha: #Verifica se a pessoa q vou mexer está nal inha
+                            if  adicionar in linha: #Verifica se a pessoa q vou mexer está nal inha
                                 file.write(f"Nome {adicionar} Tarefas: {len(pessoa[adicionar])} --> {pessoa[adicionar]}\n")
                             else:
                                 file.write(linha)
                     break
+        case 3:
+            with open("ListadeTarefa.txt", "r") as file:
+               linhas = file.readlines()
+               for linha in linhas:
+                   l=linha.split('Tarefas')
+                   print(l[0].split('Nome')[1])
+                   
+            nome=input("Quer ver tarefa de quem: ")
+            with open("ListadeTarefa.txt", "r") as file:
+                for linha in linhas:
+                    if nome in linha:
+                        tarefa = linha.split('-->')[1]
+                        tarefa = tarefa.strip().strip("[]").replace("'", "") #strip 1 remove espaços. o 2 os colchetes e o replace troca aspas por nd, só sobrando a virgula
+                        mostrar = tarefa.split(',')
+                        for t in mostrar:
+                            print(f"- {t.strip()}")
+        case 4:
+            with open("ListadeTarefa.txt", "r") as file:
+                linhas = file.readlines()
+                for linha in linhas:
+                   l=linha.split('Tarefas')
+                   print(l[0].split('Nome')[1])
+                   
+            nome=input("Quer excluir a tarefa de quem: ")
+            with open("ListadeTarefa.txt", "r") as file:
+                for linha in linhas:
+                    if nome in linha:
+                        tarefa = linha.split('-->')[1]
+                        tarefa = tarefa.strip().strip("[]").replace("'", "") 
+                        mostrar = tarefa.split(',')
+                        for t in mostrar:
+                            print(f"- {t.strip()}")
+                        excluir=input("Qual tarefa deseja excluir: ")
+                        if excluir in mostrar:
+                            tarefas=mostrar
+                            tarefas.remove(excluir)
+            with open("ListadeTarefas.txt", "a+") as file:
+                file.seek(0)
+                for linha in linhas:
+                    if nome in linha:
+                        file.write()
+                
+               
+
+                    
+                    
+       
 
                 
         

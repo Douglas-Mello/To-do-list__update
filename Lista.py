@@ -13,17 +13,16 @@ while True:
     try:
         opc('Adicionar pessoa',1)
         opc("Adicionar tarefa",2)
-        opc('Salvar tarefa', 3)
-        opc('Listar tarefas', 4)
-        opc ('Remover tarefa', 5)
-        opc ('Sair', 6)
+        opc('Listar tarefas', 3)
+        opc ('Remover tarefa', 4) 
+        opc ('Sair', 5)
         resp = int(input("Opção: "))
         
-        if resp in range(1,6):
+        if resp in range(1,5):
             print()
             lista(resp)
             sleep(1.5)
-        elif resp == 6:
+        elif resp == 5:
             Print('Saindo ...')
             sleep(1.5)
             break
