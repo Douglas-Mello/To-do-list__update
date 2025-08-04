@@ -1,51 +1,58 @@
-pessoa = list()
-
+pessoa=dict()
+tarefas= list()
 def lista(opc):
-    tarefas= list()
+    
     match opc:
         case 1:
             with open("ListadeTarefa.txt", 'a+') as file:
+                file.seek(0)
+                linhas=file.readlines()
                 nome=input('nome da pessoa: ')
-                c=1
+                for linha in linhas:
+                    if f"Nome {nome}" in linha:
+                        return 'Essa pessoa já foi cadastrada'
                 tarefa=input(f"Digite a primeira Tarefa de {nome}: ")
-                pessoa.append(nome)
-                for p in pessoa:
-                    file.write(f"Nome {p} Tarefas: {c} --> {tarefa}\n")
-                    c+=1
+                
+                pessoa[nome.strip()]=tarefa
+                file.write(f"Nome {nome.strip()} Tarefas: 1 --> {tarefa}\n")
+                    
         case 2:
             print("Quer adicionar tarefa a quem: ")
-            with open("ListadeTarefa.txt", "r") as file:
-                linhas = file.readlines()
+            with open("ListadeTarefa.txt", "r") as f:
+                linhas = f.readlines()
                 for linha in linhas:
-                   l=linha.split('Tarefas')
-                   print(l[0].split('Nome')[1])
-                adicionar = input("Sua escolha: ")
+                    print(linha.split('Tarefas')[0].split('Nome')[1].strip())
+                
+                nome = input("Sua escolha: ").strip()
+
                 for linha in linhas:
-                    if adicionar not in adicionar:
-                        print("Pessoa não encontrada.")
-                        return 
+                    if f"Nome {nome} " in linha:
+                        tarefasAntiga = linha.split('-->')[1].strip()
+                        tarefasAntiga= tarefasAntiga.replace('[', '').replace(']', '').replace("'", "")
+                        tarefas = []
+                        for t in tarefasAntiga.split(','):
+                            t_limpa = t.strip()
+                            if t_limpa:
+                                tarefas.append(t_limpa)
+
+                        pessoa[nome] = tarefas[:]
+                        break
+                else:
+                    return "Pessoa não encontrada."
 
             while True:
-                with open("ListadeTarefa.txt", "r") as file:
-                        linhas = file.readlines()
-                        for linha in linhas:
-                            if adicionar in linha:
-                                tarefaantiga=linha.split('-->')
-                                tarefas.append(tarefaantiga[1].strip().strip('[]').split(','))
-                novaTarefa = input("Tarefa a ser adicionada: ")
-                tarefas.append(novaTarefa)
+                t = input("Tarefa a ser adicionada: ").strip()
+                tarefas.append(t)
                 cont = input("Quer adicionar mais tarefas [s/n]: ").strip().lower()
-                
                 if cont == 'n':
-                    with open("ListadeTarefa.txt", "r") as file:
-                        linhas = file.readlines()
-                    with open("ListadeTarefa.txt", "w") as file:
+                    pessoa[nome].extend(tarefas)
+                    with open("ListadeTarefa.txt", "w") as f:
                         for linha in linhas:
-                            if  adicionar in linha: #Verifica se a pessoa q vou mexer está na inha
-                                for i in tarefas:
-                                    file.write(f"Nome {adicionar} Tarefas: {len(tarefas)} --> {i}\n")
+                            if f"Nome {nome} " in linha:
+                                f.write(f"Nome {nome} Tarefas: {len(pessoa[nome])} --> {pessoa[nome]}\n")
                             else:
-                                file.write(linha)
+                                f.write(linha)
+                    tarefas.clear()
                     break
         case 3:
             with open("ListadeTarefa.txt", "r") as file:
@@ -65,6 +72,7 @@ def lista(opc):
                             print(f"- {t.strip()}")
         case 4:
             with open("ListadeTarefa.txt", "r") as file:
+                file.seek(0)
                 linhas = file.readlines()
                 for linha in linhas:
                     print(linha.split('Tarefas')[0])
@@ -77,7 +85,7 @@ def lista(opc):
                         for t in mostrar:
                             print(f"- {t.strip()}")
                     excluir=input('Qual tarefa deseja excluir: ')
-                    mostrar.remove(excluir)
+                    mostrar.remove(excluir.strip)
                     delete=mostrar
                     with open("ListadeTarefa.txt", 'w') as file:
                         file.seek(0)
